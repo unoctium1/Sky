@@ -6,6 +6,8 @@ package Sky;
  * Description: Draws a sky with various types of stars.
  *********************************************************************************************************************/
 
+import Exceptions.WrongPointsException;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ComponentEvent;
@@ -21,7 +23,6 @@ public class SkyPanel extends JPanel{
     private Dimension dim = new Dimension(xDim, yDim);
 
     SkyPanel(){
-        setBackground (Color.red);
         setPreferredSize(dim);
         this.addComponentListener(new ResizeListener());
     }
@@ -41,7 +42,22 @@ public class SkyPanel extends JPanel{
             }
             stari = new Star(points, (generator.nextInt(50)+10),(generator.nextInt(xDim-50)+1), (generator.nextInt(yDim-50)+1));
             System.out.println(stari);
-            stari.draw(g);
+            try {
+                stari.draw(g);
+            } catch (WrongPointsException e) {
+                System.out.println(e.getMessage());
+                e.printStackTrace();
+            }
+        }
+        for(int i = 1; i <= amountOfStars/2; i ++){
+            stari = new Star(1, (generator.nextInt(50)+10),(generator.nextInt(xDim-50)+1), (generator.nextInt(yDim-50)+1));
+            System.out.println(stari);
+            try {
+                stari.draw(g);
+            } catch (WrongPointsException e) {
+                System.out.println(e.getMessage());
+                e.printStackTrace();
+            }
         }
     }
     public class ResizeListener implements ComponentListener{

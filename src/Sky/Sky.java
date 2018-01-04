@@ -7,7 +7,8 @@ package Sky;
  *********************************************************************************************************************/
 
 import javax.swing.*;
-//import java.awt.*;
+import java.awt.*;
+
 
 public class Sky {
 
@@ -15,7 +16,7 @@ public class Sky {
         JFrame frame = new JFrame ("SkyPanel");
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.getContentPane().add(new SkyPanel());
-        //frame.getContentPane().setBackground(Color.black);
+        frame.setBackground(Color.black);
         frame.pack();
         frame.setVisible(true);
     }
